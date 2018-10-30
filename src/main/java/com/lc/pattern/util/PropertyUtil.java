@@ -47,4 +47,23 @@ public class PropertyUtil {
         }
         return properties.getProperty(key, defaultValue);
     }
+
+    public static Properties getProperties(String filePath) {
+        InputStream in = null;
+        try {
+        in = PropertyUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        properties.load(in);
+        } catch (Exception e) {
+            //do nothing
+        } finally {
+            try {
+                if(null != in) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                //do nothing
+            }
+        }
+        return properties;
+    }
 }
