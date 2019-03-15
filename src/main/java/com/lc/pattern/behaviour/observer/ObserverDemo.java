@@ -9,6 +9,7 @@ import java.util.Properties;
 /**
  * 主类
  * @author LittleCharacter
+ * 注：https://blog.csdn.net/maijia0754/article/details/80604444
  */
 public class ObserverDemo {
 	private static List<WindowListener> windowListeners = new ArrayList<WindowListener>();
