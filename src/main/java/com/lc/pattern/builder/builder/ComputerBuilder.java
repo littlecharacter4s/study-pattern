@@ -5,7 +5,9 @@ package com.lc.pattern.builder.builder;
  * @author LittleRW
  */
 public interface ComputerBuilder {
-	Cpu buildeCpu();
-	Memory buildeMemory();
-	Video buildeVideo();
+	ComputerBuilder buildCpu();
+	ComputerBuilder buildMemory();
+	ComputerBuilder buildVideo();
+
+	Computer build();
 }

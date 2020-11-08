@@ -1,18 +1,19 @@
 package com.lc.pattern.builder.builder;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BuilderDemo {
 	public static void main(String[] args) {
-		Map<String, ComputerBuilder> map = new HashMap<>();
-		map.put("Lenovo", new LenovoComputerBuilder());
-		map.put("Mac", new MacComputerBuilder());
-		ComputerDirector cd = new XComputerDirector(map);
-		Computer computer = cd.directComputer();
+	    // 正规的方式
+		ComputerDirector cd = new ComputerDirector(new LenovoComputerBuilder());
+		Computer computer = cd.buildComputer();
 		
 		System.out.println(computer.getCpu().getName());
 		System.out.println(computer.getMemory().getName());
 		System.out.println(computer.getVideo().getName());
+
+		// 简单常用的方式（通常复杂的对象属性都是不变的，如果构建过程不复杂可以省略Director）
+        computer = new MacComputerBuilder().buildCpu().buildMemory().buildVideo().build();
+        System.out.println(computer.getCpu().getName());
+        System.out.println(computer.getMemory().getName());
+        System.out.println(computer.getVideo().getName());
 	}
 }

@@ -6,19 +6,31 @@ package com.lc.pattern.builder.builder;
  */
 public class LenovoComputerBuilder implements ComputerBuilder{
 
+	private Computer.Cpu cpu;
+    private Computer.Memory memory;
+    private Computer.Video video;
+
 	@Override
-	public Cpu buildeCpu() {
-		return new Cpu("Lenovo cpu...");//这里可以联合工厂方法模式
+	public ComputerBuilder buildCpu() {
+	    this.cpu = new Computer.Cpu("Lenovo cpu...");
+		return this;
 	}
 
 	@Override
-	public Memory buildeMemory() {
-		return new Memory("Lenovo memory...");
+	public ComputerBuilder buildMemory() {
+        this.memory = new Computer.Memory("Lenovo memory...");
+        return this;
 	}
 
 	@Override
-	public Video buildeVideo() {
-		return new Video("Lenovo video...");
+	public ComputerBuilder buildVideo() {
+        this.video = new Computer.Video("Lenovo video...");
+        return this;
 	}
+
+    @Override
+    public Computer build() {
+        return new Computer(this.cpu, this.memory, this.video);
+    }
 
 }

@@ -6,19 +6,31 @@ package com.lc.pattern.builder.builder;
  */
 public class MacComputerBuilder implements ComputerBuilder{
 
+	private Computer.Cpu cpu;
+	private Computer.Memory memory;
+	private Computer.Video video;
+
 	@Override
-	public Cpu buildeCpu() {
-		return new Cpu("Mac cpu...");//这里可以联合工厂方法模式
+	public ComputerBuilder buildCpu() {
+		this.cpu = new Computer.Cpu("Mac cpu...");
+		return this;
 	}
 
 	@Override
-	public Memory buildeMemory() {
-		return new Memory("Mac memory...");
+	public ComputerBuilder buildMemory() {
+		this.memory = new Computer.Memory("Mac memory...");
+		return this;
 	}
 
 	@Override
-	public Video buildeVideo() {
-		return new Video("Mac video...");
+	public ComputerBuilder buildVideo() {
+		this.video = new Computer.Video("Mac video...");
+		return this;
+	}
+
+	@Override
+	public Computer build() {
+		return new Computer(this.cpu, this.memory, this.video);
 	}
 
 }
